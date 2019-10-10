@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-jwt-auth-template';
+  title = 'Angular JWT Auth Template';
 }
