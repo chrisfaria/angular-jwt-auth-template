@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authenticationService: AuthenticationService ) 
+    private authenticationService: AuthenticationService,
+    private http: HttpClient ) 
   {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) { 
@@ -33,6 +35,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     
+    this.http.get('https://api.myjson.com/bins/7xq2x1').subscribe(() => {
+      console.log('Http Call is success from compoennt');
+    }, (error) => {
+      console.log('Http Call is failed from component');
+    })
 
     //this.loading = true;
     if(this.authenticationService.login(this.model.username, this.model.password))
