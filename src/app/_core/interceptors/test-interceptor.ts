@@ -7,12 +7,13 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class TestInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      //how to update the request Parameters
-      const updatedRequest = req.clone({
-        headers: req.headers.set("Authorization", "Some-dummyCode")
-      });
+      // //how to update the request Parameters
+      // const updatedRequest = req.clone({
+      //   headers: req.headers.set("Authorization", "Some-dummyCode")
+      // });
+      
       //logging the updated Parameters to browser's console
-      console.log("Before making api call : ", updatedRequest);
+      console.log("Before making api call : ");//, updatedRequest);
       return next.handle(req).pipe(
         tap(
           event => {

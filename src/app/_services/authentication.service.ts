@@ -24,25 +24,20 @@ export class AuthenticationService {
       return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) : boolean {
+  login(username: string, password: string){
       
-      if (username == 'test' && password == 'test')
-      {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //localStorage.setItem('currentUser', JSON.stringify(this.user));
-        //this.currentUserSubject.next(this.user);
-
-        return true;
-      }
-
-      return false;
-      // return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-      //     .pipe(map(user => {
-      //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-      //         localStorage.setItem('currentUser', JSON.stringify(user));
-      //         this.currentUserSubject.next(user);
-      //         return user;
-      //     }));
+      // if (username == 'test' && password == 'test')
+      // {
+      //   return true;
+      // }
+      // return false;
+      return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+          .pipe(map(user => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
+              return user;
+          }));
   }
 
   logout() {
