@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { TestInterceptor } from './_core';
+import { httpInterceptorProviders } from './_core';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { TestInterceptor } from './_core';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TestInterceptor, multi: true },
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })
